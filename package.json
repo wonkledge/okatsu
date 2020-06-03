@@ -1,0 +1,37 @@
+{
+  "name": "@wonkledge/okatsu",
+  "version": "0.0.8",
+  "description": "Node JS API Framework",
+  "main": "index.js",
+  "scripts": {
+    "start": "babel-node src/index.js",
+    "dev": "nodemon --exec 'babel-node src/index.js'",
+    "test": "jest src/",
+    "prepublishOnly": "babel src --out-dir lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wonkledge/Co.Co.git"
+  },
+  "keywords": [
+    "Framework",
+    "API"
+  ],
+  "author": "wonkledge",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wonkledge/okatsu/issues"
+  },
+  "homepage": "https://github.com/wonkledge/okatsu#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.10.1",
+    "@babel/core": "^7.10.1",
+    "@babel/node": "^7.10.1",
+    "@babel/preset-env": "^7.10.1",
+    "jest": "^26.0.1",
+    "nodemon": "^2.0.4"
+  },
+  "dependencies": {
+    "mongoose": "^5.9.16"
+  }
+}
