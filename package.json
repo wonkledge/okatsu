@@ -1,6 +1,6 @@
 {
   "name": "@wonkledge/okatsu",
-  "version": "0.0.8",
+  "version": "0.0.1",
   "description": "Node JS API Framework",
   "main": "src/index.js",
   "scripts": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wonkledge/Co.Co.git"
+    "url": "git+https://github.com/wonkledge/okatsu.git"
   },
   "keywords": [
     "Framework",

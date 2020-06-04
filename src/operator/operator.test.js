@@ -1,16 +1,17 @@
 import {
     COMBINE,
-    combine,
+    combine, compose,
     CONTEXTUALIZE,
     contextualize,
     EITHER,
-    either,
+    either, injectContext,
     rejected,
     resolved,
-    resolveOperator
+    resolveOperator, useContext
 } from "./operator";
 
-const sum = (a,b) => a + b;
+
+const sum = (a) => a;
 const times = (a, b) => a * b;
 const minus = (a, b) => a-b;
 const divide = (a,b ) => a/b;
@@ -26,21 +27,28 @@ const minusAndSumOrTimes = combine(sumOrTimes, minus);
 const moduloOrMinus = either(modulo, minus);
 const moduloOrMinusAndDivide = combine(moduloOrMinus, moduloAndMinusAndDivide);
 const combineBothEither = combine(moduloOrMinus, sumOrTimes);
-const divideAndTimesOrmoduloAndMinus = either(divideAndTimes, moduloAndMinus);
 
 describe('either function', () => {
     const sumOnLeftTimesOnRight = either(sum, times);
 
     it('should return correct function on left side', () => {
-        expect(sumOnLeftTimesOnRight.left(2,0)).toBe(2);
+        expect(sumOnLeftTimesOnRight.left(2)).toBe(2);
     });
 
     it('should return correct function on right side', () => {
-        expect(sumOnLeftTimesOnRight.right(2,0)).toBe(0);
+        expect(sumOnLeftTimesOnRight.right(2, 0)).toBe(0);
     });
 
     it('should return correct type', () => {
         expect(sumOnLeftTimesOnRight.type).toBe(EITHER);
+    });
+
+    it('should throw exception when left is not a function', () => {
+        expect(() => either(divideAndTimes, sum)).toThrow('left side of either must be a function');
+    });
+
+    it('should throw exception when right is not a function', () => {
+        expect(() => either(sum, divideAndTimes)).toThrow('right side of either must be a function');
     });
 });
 
@@ -55,29 +63,8 @@ describe('combine function', () => {
     });
 });
 
-describe('contextualize function', () => {
-    const sumWithContext = contextualize(sum);
 
-    it('should return correct type', () => {
-        expect(sumWithContext.type).toBe(CONTEXTUALIZE);
-    });
 
-    it('should return function to contextualize', () => {
-        expect(sumWithContext.func).toStrictEqual(sum);
-    });
-});
-
-describe('resolve function', () => {
-    it('should resolves data pass in', () => {
-        expect(resolved('data')).resolves.toBe('data');
-    });
-});
-
-describe('rejected function', () => {
-    it('should rejects data pass in', () => {
-        expect(rejected('data')).rejects.toBe('data');
-    });
-});
 
 describe('resolveOperator function', () => {
     it('should resolve combine on first degree', () => {
@@ -108,8 +95,5 @@ describe('resolveOperator function', () => {
         expect(resolveOperator([moduloOrMinusAndDivide]))
             .toStrictEqual([{ type: EITHER, left: modulo, right: minus }, divide, minus, modulo] );
     });
-
-    it('should throw error when combine are inside either', () => {
-        //TODO: Implements this
-    });
 });
+
