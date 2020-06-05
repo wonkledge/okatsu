@@ -1,36 +1,27 @@
-/**
- *
- * {
- *     source: field's name of data to map
- *     target: field's name wanted
- *     transform: function to apply on field's value (optional)
- * }
- *
- **/
+import { resolved } from "../promise/promise";
 
-import {resolved} from "../promise/promise";
+const mapFields = (mapping) => (data) => {
+  const dataMapped = data.map((entry) => {
+    const fields = Object.keys(entry);
 
-export const mapFields = mapping => data => {
+    return fields.reduce((entryMapped, field) => {
+      const [mapper] = mapping.filter((item) => item.source === field);
 
-    const dataMapped = data.map( entry => {
-        let fields = Object.keys(entry);
+      if (mapper === undefined) {
+        return { ...entryMapped, [field]: entry[field] };
+      }
 
-        return fields.reduce( (entryMapped, field) => {
-            let [mapper] = mapping.filter( mapper => mapper.source === field);
+      if (mapper.transform !== undefined)
+        return {
+          ...entryMapped,
+          [mapper.target]: mapper.transform(entry[field], entry),
+        };
 
-            if (mapper === undefined) {
-                entryMapped[field] = entry[field];
-                return entryMapped;
-            }
+      return { ...entryMapped, [mapper.target]: entry[field] };
+    }, {});
+  });
 
-            if (mapper.transform !== undefined)
-                entryMapped[mapper.target] = mapper.transform(entry[field], entry);
-            else
-                entryMapped[mapper.target] = entry[field];
-
-            return entryMapped;
-        }, {});
-    })
-
-    return resolved(dataMapped);
+  return resolved(dataMapped);
 };
+
+export default mapFields;

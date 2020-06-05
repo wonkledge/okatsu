@@ -1,78 +1,82 @@
-import {rejected, resolved} from "../promise/promise";
-import {HTTP_CODE_400, httpResponseWrapper} from "../httpCode/httpCode";
-
-export const checkParameters = validators => req => {
-    let errors = [];
-
-    req = discardUnusedParameters(req, validators);
-    errors = checkRequiredParameters(req, validators);
-
-    if (errors.length > 0) {
-        return rejected(httpResponseWrapper(HTTP_CODE_400, errors));
-    }
-
-    errors = checkOptionalParameters(req, validators);
-
-    if (errors.length > 0) {
-        return rejected(httpResponseWrapper(HTTP_CODE_400, errors));
-    }
-
-    return resolved(req);
-};
+import { rejected, resolved } from "../promise/promise";
+import { HTTP_CODE_400, httpResponseWrapper } from "../httpCode/httpCode";
 
 const discardUnusedParameters = (req, validators) => {
-    const fields = validators.map( validator => validator.field)
-    const fieldsProvided = Object.keys(req);
+  const fields = validators.map((validator) => validator.field);
+  const fieldsProvided = Object.keys(req);
 
-    return fieldsProvided.reduce( (reqFormatted, fieldProvided) => {
-        if (fields.includes(fieldProvided)) {
-            reqFormatted[fieldProvided] = req[fieldProvided];
-        }
+  return fieldsProvided.reduce((reqFormatted, fieldProvided) => {
+    if (fields.includes(fieldProvided)) {
+      return { ...reqFormatted, [fieldProvided]: req[fieldProvided] };
+    }
 
-        return reqFormatted;
-    }, {})
-}
+    return reqFormatted;
+  }, {});
+};
 
 const checkRequiredParameters = (req, validators) => {
-    const fieldsRequired = validators
-        .filter(validator => validator.required === true)
-        .map( validator => validator.field);
-    const fieldsProvided = Object.keys(req);
-    let errors = [];
+  const fieldsRequired = validators
+    .filter((validator) => validator.required === true)
+    .map((validator) => validator.field);
 
-    errors = fieldsRequired.reduce((errors, fieldRequired) => {
-        if (!fieldsProvided.includes(fieldRequired)) {
-            errors.push(`Missing required parameters ${fieldRequired}`)
-        }
+  const fieldsProvided = Object.keys(req);
 
-        return errors;
-    }, []);
+  const missingParameters = fieldsRequired.reduce((errors, fieldRequired) => {
+    if (!fieldsProvided.includes(fieldRequired)) {
+      errors.push(`Missing required parameters ${fieldRequired}`);
+    }
 
-    if (errors.length > 0)
-        return errors;
+    return errors;
+  }, []);
 
-    return fieldsProvided.reduce((errors, fieldProvided) => {
-        const [validatorField] = validators.filter( validator => validator.field === fieldProvided);
+  if (missingParameters.length > 0) return missingParameters;
 
-        if (!validatorField.predicate(req[fieldProvided])) {
-            errors.push(validatorField.errorMessage);
-        }
+  return fieldsProvided.reduce((predicateFailed, fieldProvided) => {
+    const [validatorField] = validators.filter(
+      (validator) => validator.field === fieldProvided
+    );
 
-        return errors;
-    }, []);
+    if (!validatorField.predicate(req[fieldProvided])) {
+      predicateFailed.push(validatorField.errorMessage);
+    }
+
+    return missingParameters;
+  }, []);
 };
 
 const checkOptionalParameters = (req, validators) => {
-    const fieldsProvided = Object.keys(req);
+  const fieldsProvided = Object.keys(req);
 
-    return fieldsProvided.reduce((errors, fieldProvided) => {
-        const [validatorField] = validators.filter( validator => validator.field === fieldProvided);
+  return fieldsProvided.reduce((errors, fieldProvided) => {
+    const [validatorField] = validators.filter(
+      (validator) => validator.field === fieldProvided
+    );
 
-        if (validatorField && !validatorField.predicate(req[fieldProvided])) {
-            errors.push(validatorField.errorMessage);
-        }
+    if (validatorField && !validatorField.predicate(req[fieldProvided])) {
+      errors.push(validatorField.errorMessage);
+    }
 
-        return errors;
-    }, []);
+    return errors;
+  }, []);
 };
 
+const checkParameters = (validators) => (params) => {
+  let errors = [];
+
+  const usedParams = discardUnusedParameters(params, validators);
+  errors = checkRequiredParameters(usedParams, validators);
+
+  if (errors.length > 0) {
+    return rejected(httpResponseWrapper(HTTP_CODE_400, errors));
+  }
+
+  errors = checkOptionalParameters(usedParams, validators);
+
+  if (errors.length > 0) {
+    return rejected(httpResponseWrapper(HTTP_CODE_400, errors));
+  }
+
+  return resolved(usedParams);
+};
+
+export default checkParameters;
