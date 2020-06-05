@@ -1,5 +1,5 @@
-import { rejected, resolved } from "../promise/promise";
-import { either } from "../operator/operator";
+import { rejected, resolved } from "../promise";
+import { either } from "../operator";
 
 const logGood = (input) => {
   // eslint-disable-next-line no-console
@@ -25,4 +25,4 @@ const logStashBad = (context) => (input) => {
 };
 
 export const logStash = either(logStashGood, logStashBad);
-export const log = either(logGood, logBad);
+export const index = either(logGood, logBad);

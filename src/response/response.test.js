@@ -1,5 +1,5 @@
-import sendResponse from "./response";
-import { EITHER } from "../operator/operator";
+import sendResponse from "./index";
+import { EITHER } from "../operator";
 
 describe("sendResponse Function", () => {
   const res = { status: undefined, json: () => {} };

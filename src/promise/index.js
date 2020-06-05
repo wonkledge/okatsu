@@ -1,6 +1,6 @@
-import { EITHER, isEither, resolveOperator } from "../operator/operator";
+import { EITHER, isEither, resolveOperator } from "../operator";
 // eslint-disable-next-line import/no-cycle
-import { injectContext } from "../context/context";
+import { injectContext } from "../context";
 
 export const resolved = (data) => new Promise((resolve) => resolve(data));
 export const rejected = (data) =>

@@ -1,4 +1,4 @@
-import { feature, rejected, resolved } from "./promise";
+import { feature, rejected, resolved } from "./index";
 
 describe("compose function", () => {
   it(" should take resolved path", () => {

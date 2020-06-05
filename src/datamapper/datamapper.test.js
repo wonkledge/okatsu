@@ -1,4 +1,4 @@
-import mapFields from "./datamapper";
+import mapFields from "./index";
 
 describe("mapFields Function", () => {
   it("Should map fields", () => {

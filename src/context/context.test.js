@@ -1,4 +1,4 @@
-import { useContext } from "./context";
+import { useContext } from "./index";
 
 describe("useContext function", () => {
   const [context, setContext] = useContext();

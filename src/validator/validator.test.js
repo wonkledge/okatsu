@@ -1,4 +1,4 @@
-import checkParameters from "./validator";
+import checkParameters from "./index";
 
 describe("checkParameters Function", () => {
   it("Should succeed when all required parameters are provided", () => {

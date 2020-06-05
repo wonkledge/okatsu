@@ -1,4 +1,4 @@
-import { resolved } from "../promise/promise";
+import { resolved } from "../promise";
 
 const mapFields = (mapping) => (data) => {
   const dataMapped = data.map((entry) => {

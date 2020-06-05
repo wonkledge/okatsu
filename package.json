@@ -1,6 +1,6 @@
 {
   "name": "@wonkledge/okatsu",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "description": "Node JS API Framework",
   "main": "src/index.js",
   "scripts": {
@@ -37,9 +37,9 @@
     "eslint-plugin-react": "^7.20.0",
     "jest": "^26.0.1",
     "nodemon": "^2.0.4",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "babel-eslint": "^10.1.0"
   },
   "dependencies": {
-    "babel-eslint": "^10.1.0"
   }
 }

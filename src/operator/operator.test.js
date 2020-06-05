@@ -1,4 +1,4 @@
-import { COMBINE, combine, EITHER, either, resolveOperator } from "./operator";
+import { COMBINE, combine, EITHER, either, resolveOperator } from "./index";
 
 const sum = (a) => a;
 const times = (a, b) => a * b;

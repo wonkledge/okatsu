@@ -1,4 +1,4 @@
-import { rejected, resolved } from "../promise/promise";
+import { rejected, resolved } from "../promise";
 import { HTTP_CODE_400, httpResponseWrapper } from "../httpCode/httpCode";
 
 const discardUnusedParameters = (req, validators) => {

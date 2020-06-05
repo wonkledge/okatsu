@@ -1,6 +1,6 @@
-import { EITHER, isEither } from "../operator/operator";
+import { EITHER, isEither } from "../operator";
 // eslint-disable-next-line import/no-cycle
-import { rejected, resolved } from "../promise/promise";
+import { rejected, resolved } from "../promise";
 
 const STRIP_COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/gm;
 const ARGUMENT_NAMES = /([^\s,]+)/g;

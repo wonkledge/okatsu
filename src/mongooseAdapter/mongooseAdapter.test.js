@@ -1,5 +1,5 @@
-import { COMBINE, EITHER } from "../operator/operator";
-import query from "./mongooseAdapter";
+import { COMBINE, EITHER } from "../operator";
+import query from "./index";
 
 describe("query function", () => {
   const fetchDb = (req) => ({ data: "Some data" });

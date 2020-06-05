@@ -1,5 +1,5 @@
 import { HTTP_CODE_200 } from "../httpCode/httpCode";
-import { either } from "../operator/operator";
+import { either } from "../operator";
 
 const handleResponse = (res) => (data) => {
   res.status(HTTP_CODE_200);
