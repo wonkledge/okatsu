@@ -26,6 +26,18 @@ const needContext = (func) => {
   return nextArg === "context";
 };
 
+const handleContextEither = (context, setContext, either) => {
+  const left = needContext(either.left) ? either.left(context) : either.left;
+  const right = needContext(either.right)
+    ? either.right(context)
+    : either.right;
+
+  return [
+    createEitherContext(setContext, either.left.name, either.right.name),
+    { type: EITHER, left, right },
+  ];
+};
+
 export const useContext = () => {
   const context = {
     stash: {},
@@ -40,18 +52,6 @@ export const useContext = () => {
   };
 
   return [context, setContext];
-};
-
-const handleContextEither = (context, setContext, either) => {
-  const left = needContext(either.left) ? either.left(context) : either.left;
-  const right = needContext(either.right)
-    ? either.right(context)
-    : either.right;
-
-  return [
-    createEitherContext(setContext, either.left.name, either.right.name),
-    { type: EITHER, left, right },
-  ];
 };
 
 export const injectContext = (functions) => {
