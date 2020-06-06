@@ -1,8 +1,8 @@
-# OKATSU : Emphasize domain
+# OKATSU : Emphasize Domain
 
 ​	OKATSU has been created to focus on domain part rather than technical part of an API. It takes an approach from functional programming and try to bring domain into spot light. 
 
- `feature` function is the core of OKATSU. Through that function you'll be able to express verbosely what your endpoint has to do.
+ `feature` function is the core of OKATSU. Through this function you'll be able to express verbosely what your endpoint has to do.
 
 
 
@@ -10,7 +10,7 @@ Here an example of implementation with OKATSU framework : [https://github.com/wo
 
 
 
-**Okatsu has been made to work with Express and Mongoose**
+**Okatsu has been made to work with Express and Mongoose**.
 
 
 
@@ -28,7 +28,7 @@ If you have questions, ideas or just want to discuss about it you can reach me o
 
 ## feature 
 
-​	Resolve every functions from right to left.
+​	Resolve every function from right to left.
 
 ##### 	Be careful
 
@@ -55,7 +55,7 @@ const getAllData = (req, res) => {
 
 ## resolved
 
-​	Returns promise resolved with data passed in
+​	Returns promise resolved with data passed in.
 
 ##### 	Signature
 
@@ -72,7 +72,7 @@ const sum3 = input => resolved(input + 3)
 
 ## rejected
 
-​	Returns promise rejected with data passed in	
+​	Returns promise rejected with data passed in.	
 
 ##### 	Signature
 
@@ -89,7 +89,7 @@ const sum3 = input => rejected(input + 3)
 
 ## combine
 
-​	Returns an object with type combine and array of functions passed in 
+​	Returns an object with type combine and an array of functions passed in. 
 
 ##### 	Signature
 
@@ -109,7 +109,7 @@ const sum3Times2 = combine(times2, sum3);
 
 ## either
 
-​	Returns an object with type either, left part contains function that'll be call if previous promise is resolved, right part contains function that'll be call if previous promise is rejected
+​	Returns an object with type either, left part contains function that will be called if previous promise is resolved, right part contains function that will be called if previous promise is rejected.
 
 ##### 	Signature
 
@@ -161,7 +161,7 @@ checkParameters(validators) // output : Promise resolve with params or Promise r
 
 ##### 	Be careful
 
-​		That function must be used inside `feature` function
+​		This function must be used inside `feature` function.
 
 ##### 	Signature
 
