@@ -12,6 +12,20 @@ Here an example of implementation with OKATSU framework : [https://github.com/wo
 
 **Okatsu has been made to work with Express and Mongoose**
 
+
+
+If you have questions, ideas or just want to discuss about it you can reach me out :
+
+​		[@wonkledge](https://twitter.com/wonkledge) on twitter
+
+​		[@wonkledge](https://stackoverflow.com/users/10702448/wonkledge) on stackOverflow
+
+​				
+
+## Documentation
+
+
+
 ## feature 
 
 ​	Resolve every functions from right to left.
@@ -22,7 +36,7 @@ Here an example of implementation with OKATSU framework : [https://github.com/wo
 
 ##### 	Signature
 
-​		`@wonkledge/okatsu/lib/feature -> ...functions -> input -> Promise`  
+​		`@wonkledge/okatsu/lib/promise/feature -> ...functions -> input -> Promise`  
 
 ##### 	Example
 
@@ -45,7 +59,7 @@ const getAllData = (req, res) => {
 
 ##### 	Signature
 
-​		`@wonkledge/okatsu/lib/resolved -> data -> Promise.resolve `
+​		`@wonkledge/okatsu/lib/promise/resolved -> data -> Promise.resolve `
 
 ##### 	Example
 
@@ -62,7 +76,7 @@ const sum3 = input => resolved(input + 3)
 
 ##### 	Signature
 
-​		`@wonkledge/okatsu/lib/rejected -> data -> Promise.reject `
+​		`@wonkledge/okatsu/lib/promise/rejected -> data -> Promise.reject `
 
 ##### 	Example
 
@@ -79,7 +93,7 @@ const sum3 = input => rejected(input + 3)
 
 ##### 	Signature
 
-​		`@wonkledge/okatsu/lib/combine -> ...functions -> object `
+​		`@wonkledge/okatsu/lib/operator/combine -> ...functions -> object `
 
 ##### 	Example
 
@@ -99,7 +113,7 @@ const sum3Times2 = combine(times2, sum3);
 
 ##### 	Signature
 
-​		`@wonkledge/okatsu/lib/either -> (left, right) -> object `
+​		`@wonkledge/okatsu/lib/operator/either -> (left, right) -> object `
 
 ##### 	Example
 
@@ -125,7 +139,7 @@ const times2OrSum3 = either(times2, sum3);
 
 ##### 	Signature
 
-​		`@wonkledge/okatsu/lib/checkParameters -> validators -> params -> Promise.resolved || Promise.rejected `
+​		`@wonkledge/okatsu/lib/validator/checkParameters -> validators -> params -> Promise.resolved || Promise.rejected `
 
 ##### 	Example
 
@@ -151,7 +165,7 @@ checkParameters(validators) // output : Promise resolve with params or Promise r
 
 ##### 	Signature
 
-​		`@wonkledge/okatsu/lib/mapFields -> mapping -> data -> Promise.resolved`
+​		`@wonkledge/okatsu/lib/datamapper/mapFields -> mapping -> data -> Promise.resolved`
 
 ##### 	Example
 
@@ -178,7 +192,7 @@ mapFields(mapping); //output : Promise resolve with data mapped
 
 ##### 	Signature
 
-​		`@wonkledge/okatsu/lib/sendResponse -> res -> either`
+​		`@wonkledge/okatsu/lib/response/sendResponse -> res -> either`
 
 ##### 	Example	
 
@@ -193,7 +207,7 @@ sendResponse(res) // output : { type: either, left: handleResponse, right: handl
 
 ##### 	Signature
 
-​		`@wonkledge/okatsu/lib/query -> callback -> combine`
+​		`@wonkledge/okatsu/lib/mongooseAdapter/query -> callback -> combine`
 
 ##### 	Example
 
@@ -209,7 +223,7 @@ query(fetchData)
 
 ##### 	Signature
 
-​		`@wonkledge/okatsu/lib/httpResponseWrapper -> (httpCode, payload) -> object`
+​		`@wonkledge/okatsu/lib/httpCode/httpResponseWrapper -> (httpCode, payload) -> object`
 
 ##### 	Example
 
