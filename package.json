@@ -1,6 +1,6 @@
 {
   "name": "@wonkledge/okatsu",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Node JS API Framework domain okatsu functional",
   "main": "src/index.js",
   "scripts": {
@@ -15,7 +15,11 @@
   },
   "keywords": [
     "Framework",
-    "API"
+    "API",
+    "NODE JS",
+    "domain",
+    "okatsu",
+    "functional"
   ],
   "author": "wonkledge",
   "license": "ISC",
