@@ -1,7 +1,7 @@
 {
   "name": "@wonkledge/okatsu",
-  "version": "0.0.6",
-  "description": "Node JS API Framework",
+  "version": "0.0.7",
+  "description": "Node JS API Framework domain okatsu functional",
   "main": "src/index.js",
   "scripts": {
     "start": "babel-node src/index.js",
