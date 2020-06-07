@@ -8,6 +8,8 @@
 
 Here an example of implementation with OKATSU framework : [https://github.com/wonkledge/okatsu-api-example]( https://github.com/wonkledge/okatsu-api-example)
 
+Medium article on okatsu
+https://medium.com/@alexandre.wonkledge.leroy/create-nodejs-api-embrace-your-domain-with-express-mongoose-and-okatsu-c51c30dcb54a
 
 
 **Okatsu has been made to work with Express and Mongoose**.
