@@ -54,7 +54,6 @@ describe("isIncludedIn Function", () => {
 })
 
 describe("isAlphaNumericExtended Function", () => {
-    const status = ['OK', 'NOK'];
 
     it("Should succeed when value is included array given", () => {
         expect(isAlphaNumericExtended('Besançon')).toBe(true);
