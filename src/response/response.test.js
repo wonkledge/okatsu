@@ -1,4 +1,4 @@
-import sendResponse from "./index";
+import {sendResponse} from "./index";
 import { EITHER } from "../operator";
 
 describe("sendResponse Function", () => {

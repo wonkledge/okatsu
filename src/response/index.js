@@ -11,7 +11,5 @@ const handleErrorResponse = (res) => (errors) => {
   res.json({ errors });
 };
 
-const sendResponse = (res) =>
+export const sendResponse = (res) =>
   either(handleResponse(res), handleErrorResponse(res));
-
-export default sendResponse;

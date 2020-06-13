@@ -1,6 +1,6 @@
 import { resolved } from "../promise";
 
-const mapFields = (mapping) => (data) => {
+export const mapFields = (mapping) => (data) => {
   const dataMapped = data.map((entry) => {
     const fields = Object.keys(entry);
 
@@ -23,5 +23,3 @@ const mapFields = (mapping) => (data) => {
 
   return resolved(dataMapped);
 };
-
-export default mapFields;

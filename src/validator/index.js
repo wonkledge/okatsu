@@ -60,7 +60,7 @@ const checkOptionalParameters = (req, validators) => {
   }, []);
 };
 
-const checkParameters = (validators) => (params) => {
+export const checkParameters = (validators) => (params) => {
   let errors = [];
 
   const usedParams = discardUnusedParameters(params, validators);
@@ -78,5 +78,3 @@ const checkParameters = (validators) => (params) => {
 
   return resolved(usedParams);
 };
-
-export default checkParameters;

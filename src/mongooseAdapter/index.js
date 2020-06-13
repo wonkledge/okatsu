@@ -12,6 +12,5 @@ const handleData = (data) => {
 const handleError = (error) =>
   rejected(httpResponseWrapper(HTTP_CODE_500, error));
 
-const query = (callback) => combine(either(handleData, handleError), callback);
+export const query = (callback) => combine(either(handleData, handleError), callback);
 
-export default query;
